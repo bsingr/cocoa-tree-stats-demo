@@ -2,6 +2,8 @@
 
 A little Backbone.js show-case using the GitHub API via AJAX/CORS meant to be used at [CocoaTree](http://cocoa-tree.github.io) someday.
 
+![Screenshot](screenshot.png)
+
 **Features**
 
 1. Search for repositories on GitHub.
