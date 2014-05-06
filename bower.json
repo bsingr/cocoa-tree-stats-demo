@@ -1,0 +1,28 @@
+{
+  "name": "cocoa-tree-stats",
+  "version": "0.0.1",
+  "authors": [
+    "Jens Bissinger <mail@jens-bissinger.de>"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.1.2",
+    "bootstrap": "~3.1.1",
+    "jquery": "~2.1.1",
+    "morris.js": "~0.5.0",
+    "requirejs": "~2.1.11"
+  },
+  "devDependencies": {
+      "mocha": "*",
+      "chai": "*",
+      "chai-as-promised": "*"
+  }
+}

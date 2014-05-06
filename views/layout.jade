@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/bower_components/jquery/dist/jquery.js')
+    script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
+    script(src='/bower_components/underscore/underscore.js')
+    script(src='/bower_components/backbone/backbone.js')
+    script(src='/bower_components/raphael/raphael.js')
+    script(src='/bower_components/morris.js/morris.js')
+    script(src='/bower_components/requirejs/require.js' data-main='javascripts/boot.js')
+  body
+    block content
