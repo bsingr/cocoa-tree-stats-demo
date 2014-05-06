@@ -18,3 +18,7 @@ h1 {
 #search-results-container .msg {
   display: none;
 }
+
+#graph {
+  margin-bottom: 20px;
+}
