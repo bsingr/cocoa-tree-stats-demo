@@ -7,7 +7,11 @@ A little Backbone.js show-case using the GitHub API via AJAX/CORS meant to be us
 1. Search for repositories on GitHub.
 2. Render a bar chart based on last year of commit activity data for a specific repository.
 
-Please see [public/javascripts](public/javascripts) for implementation details.
+**Implementation**
+
+Please see [public/javascripts](public/javascripts) for the interesting details.
+
+Of course this is a proof-of-concept with insufficient error handling, etc.
 
 ## Getting Started
 
