@@ -10,25 +10,25 @@ define(['lib/github_client', 'application/graph'], function(GitHubClient, Graph)
       this.graph('bsingr', 'cocoa-tree');
     },
     graph: function(user, repo) {
-      $('h1').text('Activity of github.com/'+user+'/'+repo)
-      var gitHubClient = new GitHubClient();
-      var c = this;
-      gitHubClient.commitActivity(user+'/'+repo).then(function(data){
+      var controller = this;
+      this.setTitle('Activity of github.com/'+user+'/'+repo);
+      this.gitHubClient().commitActivity(user+'/'+repo).then(function(data){
         var graph = new Graph();
         graph.render(data);
       }, function(data){
-        $('#graph').html("GitHub is generating statistics...");
-        setTimeout(function(){
-          c.graph(user, repo);
-        }, 1000);
+        controller.graphAsync(user, repo);
       });
+    },
+    graphAsync: function(user, repo) {
+      var controller = this;
+      $('#graph').text("GitHub is generating statistics...");
+      setTimeout(function(){ controller.graph(user, repo); }, 1000);
     },
     searchRepositories: function(query) {
       var c = this;
       if (query.length) {
-        var gitHubClient = new GitHubClient();
-        gitHubClient.searchRepositories(query).then(c.renderRepositories,
-                                                    c.renderGitHubError);
+        this.gitHubClient().searchRepositories(query)
+                           .then(c.renderRepositories, c.renderGitHubError);
       } else {
         c.renderRepositories({items: []});
       }
@@ -48,7 +48,23 @@ define(['lib/github_client', 'application/graph'], function(GitHubClient, Graph)
       $('#search-results').html(html.join(''));
     },
     renderGitHubError: function(error) {
-      $('h1').text('GitHub API Error. Please try again later...');
+      this.setTitle('GitHub API Error. Please try again later...');
+    },
+    setTitle: function(title) {
+      $('h1').text(title)
+    },
+    setUseFakeAPI: function(useFakeAPI) {
+      if (useFakeAPI) {
+        this.gitHubClient().useFakeAPI();
+      } else {
+        this.gitHubClient().useRealAPI();
+      }
+    },
+    gitHubClient: function() {
+      if (!this._githubClient) {
+        this._githubClient = new GitHubClient();
+      }
+      return this._githubClient;
     }
   });
 });

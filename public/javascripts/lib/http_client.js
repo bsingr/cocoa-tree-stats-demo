@@ -18,8 +18,8 @@ define(function(){
           reject(new Error('HTTP '+this.status+' not supported'));
         }
       };
-      xhr.onerror = function(error){
-        reject(error);
+      xhr.onerror = function(event){
+        reject(new Error('Connection failed'));
       };
       xhr.send();
     });

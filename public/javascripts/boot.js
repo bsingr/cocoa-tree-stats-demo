@@ -4,5 +4,9 @@ define(['application/controller'], function(Controller){
     var query = $(this).val();
     controller.searchRepositories(query);
   });
+  $('#use-fake-api').change(function(){
+    var useFakeAPI = $(this).is(':checked');
+    controller.setUseFakeAPI(useFakeAPI);
+  }).change();
   Backbone.history.start();
 });

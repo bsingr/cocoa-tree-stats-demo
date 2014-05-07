@@ -1,8 +1,6 @@
 define(['lib/github_client'], function(GitHubClient){
   "use strict";
 
-  var fakeGitHubAPI = true;
-
   describe('GitHubClient', function(){
     var example = new GitHubClient();
     it('exists', function() {
@@ -21,11 +19,21 @@ define(['lib/github_client'], function(GitHubClient){
     });
   });
 
-  describe('GitHub API', function(){
+  describe('GitHubClient API-Mock', function(){
     var example = new GitHubClient();
-    if (fakeGitHubAPI) {
-      example.useFakeAPI();
-    }
+    example.useFakeAPI();
+    it('calls commitActivity', function(done){
+      expect(example.commitActivity('rails/rails'))
+        .to.eventually.be.an.instanceof(Array).notify(done)
+    });
+    it('calls searchRepositories', function(done){
+      expect(example.searchRepositories('rails'))
+        .to.eventually.be.an.instanceof(Object).notify(done)
+    });
+  });
+
+  describe('GitHubClient API-Integration', function(){
+    var example = new GitHubClient();
     it('calls commitActivity', function(done){
       expect(example.commitActivity('rails/rails'))
         .to.eventually.be.an.instanceof(Array).notify(done)
